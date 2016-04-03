@@ -43,6 +43,15 @@ def multi_verb(tokens,pos_tag_tokens):
             return True
     return False
 
+def multi_clause(tokens,pos_tag_tokens):
+    for i in range(len(tokens)):
+        if (tokens[i-2] == ',') and (tokens[i] in ['and','but','or','yet','for','nor','so'])\
+                and ("N" in pos_tag_tokens[i + 1][1]):
+            return i
+        elif (tokens[i] == ';'):
+            return i
+    return 0
+
 def read_file(filename):
     result = []
     file = open(filename,"r")
@@ -58,6 +67,11 @@ def word_tagger(parnum,sennum,tokens):
     firstverbindex = 0
     pos_tag_tokens = nltk.pos_tag(tokens)
     actverbindex = []
+    multiclause = multi_clause(tokens,pos_tag_tokens)
+
+    if multiclause != 0:
+        sec_clause = word_tagger(parnum, sennum, tokens[multiclause + 1:])
+        tokens = tokens[0:multiclause]
 
     for i in range(len(tokens)):
         word = tokens[i]
@@ -131,20 +145,25 @@ def word_tagger(parnum,sennum,tokens):
     else:
         for i in range(len(tokens)):
             base_form = wordnet_lemmatizer.lemmatize(tokens[i],'v')
-            if "V" in pos_tag_tokens[i][1] and verb_flag == False:
+            if "V" in pos_tag_tokens[i][1]:
                 if base_form in ["have","be"]:
                     if "V" not in pos_tag_tokens[i+1][1]:
                         result[4].append(base_form)
                         actverbindex.append(i)
                         break
                     else:
-                        result[4].append(base_form)
-                        actverbindex.append(i)
-                        break
-                else:
+                        continue
+                elif pos_tag_tokens[i][1] in ["VBD","VBG","VBN"] and \
+                    (wordnet_lemmatizer.lemmatize(tokens[i-1],'v') not in ["have","be"]):
+                    continue
+                elif not result[2] == [] and i >= 1:
                     result[4].append(base_form)
                     actverbindex.append(i)
                     break
+            elif "V" in nltk.pos_tag([base_form])[0][1] and i >= 1:
+                result[4].append(base_form)
+                actverbindex.append(i)
+                break
 
 
     actverbindex.sort(reverse=True)
@@ -156,6 +175,11 @@ def word_tagger(parnum,sennum,tokens):
 
     remainder = " ".join(tokens)
     result[5].append(remainder)
+    if multiclause != 0:
+        for i in range(4):
+            for word in sec_clause[i+2]:
+                result[i+2].append(word)
+    print (pos_tag_tokens)
     return result
 
 

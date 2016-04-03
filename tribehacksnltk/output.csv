@@ -7,27 +7,27 @@ Para. #, Sent. #, Subject, Verbs, Actual Verbs, Remaining, Ctg.#1, Ctg.#2, Ctg.#
 2, 4, The software, perform position orbit, perform, user positioning and orbit determination ., 3, 6, 3, 1, 5, 1, 6
 2, 5, The system, support well, support, real-time applications as well as post-processing applications ., 2, 4, 9, 7, 7, 2, 8
 2, 6, The software, be test flavor, be, regularly tested on multiple flavors of Linux ., 0, 0, 0, 0, 0, 0, 0
-2, 7, Various, position have be port sever embed include flight, position, modules have been ported to several embedded real-time environments including flight receivers ., 7, 8, 5, 2, 1, 1, 7
+2, 7, Various, position have be port sever embed include flight, port, positioning modules have been to several embedded real-time environments including flight receivers ., 0, 0, 0, 0, 0, 0, 0
 2, 8, The system, work man type, work, with many types of popular geodetic receivers ., 3, 7, 3, 8, 6, 3, 5
 2, 9, Flexible adaptation, layer make ease accommodate type, make, layer it easy to accommodate new receiver types ., 0, 0, 0, 0, 0, 0, 0
 2, 10, Visual, aid, , aids ., 0, 0, 0, 0, 0, 0, 0
-2, 11, Real, time graph display use network monitor tool intern control, use, time graphic display of performance network monitoring tools and internal quality control ., 7, 6, 8, 7, 1, 0, 8
-3, 1, The system, be develop Object Oriented, be, shall developed with Object Oriented C++ and Python for portability and maintainability ., 0, 0, 0, 0, 0, 0, 0
-3, 2, Highly modular, code will be develop support embed well grind, be, code will developed to support embedded as well as ground applications ., 0, 0, 0, 0, 0, 0, 0
+2, 11, Real, time graph display use network monitor tool intern control, , time graphic display of performance using network monitoring tools and internal quality control ., 0, 0, 0, 0, 0, 0, 0
+3, 1, The system, be develop Object Oriented, develop, shall be with Object Oriented C++ and Python for portability and maintainability ., 2, 4, 1, 1, 9, 8, 2
+3, 2, Highly modular, code will be develop support embed well grind, develop, code will be to support embedded as well as ground applications ., 0, 0, 0, 0, 0, 0, 0
 3, 3, There, be track record continue, be, must an outstanding track record of continuous operations ., 0, 0, 0, 0, 0, 0, 0
 3, 4, All, model be demand, be, models sub-cm accurate for the most demanding science applications ., 0, 0, 0, 0, 0, 0, 0
-3, 5, The system, be design be party team, be, shall designed for operations by a third party and for team maintenance ., 0, 0, 0, 0, 0, 0, 0
+3, 5, The system, be design be party team, design, shall be for operations by a third party and for team maintenance ., 5, 1, 3, 9, 7, 3, 5
 3, 6, Configuration, control, , control management ., 0, 0, 0, 0, 0, 0, 0
-4, 1, Parallelized architecture ( MPI ), enable mass, Parallelized, real-time solutions to massive estimation problems ., 0, 0, 0, 0, 0, 0, 0
+4, 1, Parallelized architecture ( MPI ), enable mass, enable, real-time solutions to massive estimation problems ., 9, 6, 4, 2, 1, 7, 5
 4, 2, State-space architecture, guarantee seam, seamless, guarantees global uniformity of the differential corrections ., 0, 0, 0, 0, 0, 0, 0
 4, 3, Innovative, use achieve, achieve, use of the internet to robustness through redundancy ., 0, 2, 2, 3, 6, 5, 7
-4, 4, Unique, satellite signal model develop house, develop, satellite dynamics and signal models in house at JPL ., 2, 4, 1, 1, 9, 8, 2
+4, 4, Unique, satellite signal model develop house, , satellite dynamics and signal models developed in house at JPL ., 0, 0, 0, 0, 0, 0, 0
 4, 5, The system, include, include, shall efficient GNSS data compression ., 0, 0, 0, 0, 0, 0, 0
-4, 6, Innovative system, develop provide, develop, for end-to-end redundant operations provides high reliability ., 0, 0, 0, 0, 0, 0, 0
+4, 6, Innovative system, develop provide, provide, developed for end-to-end redundant operations high reliability ., 0, 0, 0, 0, 0, 0, 0
 4, 7, Uniquely, flex filter design allow have attribute, allow, flexible filter design any parameter to have stochastic attributes ., 0, 0, 0, 0, 0, 0, 0
 4, 8, The system, be Cap add fly, be, shall Capable of adding satellites/receivers on the fly ., 0, 0, 0, 0, 0, 0, 0
 4, 9, Unique dynamics integrator, support orbit model, support, very high orbit modeling accuracy ., 2, 4, 9, 7, 7, 2, 8
-4, 10, Tropospheric, delay model design reference sit, design, delay model and stochastic estimation capability for users or reference sites ., 5, 1, 3, 9, 7, 3, 5
+4, 10, Tropospheric, delay model design reference sit, , delay model and stochastic estimation capability designed for users or reference sites ., 0, 0, 0, 0, 0, 0, 0
 4, 11, The system, exploit full content phase, exploit, shall full information content of phase data ., 7, 4, 3, 5, 5, 6, 1
 4, 12, The system, provide time, provide, shall real time playback ., 0, 0, 0, 0, 0, 0, 0
-4, 13, The Software, will be protect be patent, be, will protected by multiple U.S. and non-U.S. patents ., 0, 0, 0, 0, 0, 0, 0
+4, 13, The Software, will be protect be patent, protect, will be by multiple U.S. and non-U.S. patents ., 3, 5, 7, 3, 8, 4, 7
