@@ -80,7 +80,7 @@ def word_tagger(parnum,sennum,tokens):
         base_form = wordnet_lemmatizer.lemmatize(word, "v")
         base_formremov =removeAdSuf(base_form)
         base_form2 = wordnet_lemmatizer.lemmatize(removeAdSuf(base_form), 'v')
-        if word.title() == word and word[0].lower() in "qwertyuiopasdfghjklzxcvbnm":
+        if word.title() == word and word[0].lower() in "qwertyuiopasdfghjklzxcvbnm" and verb_flag == False:
             result[2].append(word)
         elif tokens[i-1].lower() in ["the",'a',] and verb_flag == False:
             result[2].append(word)
