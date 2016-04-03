@@ -17,7 +17,7 @@ def isverb(word):
 
 
 def refineFile(filename):
-    f = open(filename,"r",encoding= "utf-8")
+    f = open(filename,"r",encoding="utf-8")
     
     checkVerb = 0
     sentenceList = []
@@ -44,7 +44,7 @@ def refineFile(filename):
         
                 sentence = str(sentence) + ' ' + word
         
-                if word == '.':
+                if word in ['.','?','!']:
                     
                     sentenceTokens = nltk.word_tokenize(sentence)
                     for wordCheck in sentenceTokens:
@@ -57,7 +57,7 @@ def refineFile(filename):
                     
                     if checkVerb >=1 and len(sentenceTokens) > 2:
                         paragraph.append(sentenceTokens)
-                    
+
                     checkVerb = 0
                     sentenceTokens = []
 

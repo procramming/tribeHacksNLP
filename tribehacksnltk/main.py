@@ -45,7 +45,7 @@ def multi_verb(tokens,pos_tag_tokens):
 
 def multi_clause(tokens,pos_tag_tokens):
     for i in range(len(tokens)):
-        if (tokens[i-2] == ',') and (tokens[i] in ['and','but','or','yet','for','nor','so'])\
+        if (tokens[i-1] == ',') and (tokens[i] in ['and','but','or','yet','for','nor','so'])\
                 and ("N" in pos_tag_tokens[i + 1][1]):
             return i
         elif (tokens[i] == ';'):
@@ -70,7 +70,7 @@ def word_tagger(parnum,sennum,tokens):
     multiclause = multi_clause(tokens,pos_tag_tokens)
 
     if multiclause != 0:
-        sec_clause = word_tagger(parnum, sennum, tokens[multiclause + 1:])
+        sec_clause = word_tagger(parnum, sennum, tokens[multiclause:])
         tokens = tokens[0:multiclause]
 
     for i in range(len(tokens)):
@@ -79,7 +79,7 @@ def word_tagger(parnum,sennum,tokens):
         base_form = wordnet_lemmatizer.lemmatize(word, "v")
         base_formremov =removeAdSuf(base_form)
         base_form2 = wordnet_lemmatizer.lemmatize(removeAdSuf(base_form), 'v')
-        if word.title() == word and verb_flag == False and word[0].lower() in "qwertyuiopasdfghjklzxcvbnm":
+        if word.title() == word and word[0].lower() in "qwertyuiopasdfghjklzxcvbnm":
             result[2].append(word)
         elif isverb(base_form):
             result[3].append(base_form)
@@ -114,8 +114,6 @@ def word_tagger(parnum,sennum,tokens):
     pos_tag_tokens = nltk.pos_tag(tokens)
 
     multiverb = multi_verb(tokens,pos_tag_tokens)
-
-    verb_flag = False
 
     if multiverb:
         for i in range(len(tokens)):
@@ -179,7 +177,6 @@ def word_tagger(parnum,sennum,tokens):
         for i in range(4):
             for word in sec_clause[i+2]:
                 result[i+2].append(word)
-    print (pos_tag_tokens)
     return result
 
 
@@ -206,23 +203,21 @@ def docanalyze(inputfile,outputfile,table):
 
                 tagged_output[-1] = str(tagged_output[-1])
 
-            print(tagged_output)
-
             tagged_output_str = ""
 
-            for o in range(2,7):
+            for o in range(2,6):
                 tagged_output[o] = " ".join(tagged_output[o])
                 tagged_output[o] = tagged_output[o].replace(", ","")
             for thing in tagged_output:
                 tagged_output_str += ', ' + str(thing)
             tagged_output_str = tagged_output_str.replace(", ","",1)
+            print(tagged_output_str)
             outputfile.write(tagged_output_str + "\n")
 
     outputfile.close()
 
 if __name__ == "__main__":
     inputfile = fileProcess.refineFile("input.txt")
-    outputfile = open("output.csv","w")
+    outputfile = open("output.csv","w",encoding="utf-8")
     table = read_file("table1.csv")
-
     docanalyze(inputfile,outputfile,table)
