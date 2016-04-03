@@ -122,12 +122,8 @@ def word_tagger(parnum,sennum,tokens):
     if multiverb:
         for i in range(len(tokens)):
             base_form = wordnet_lemmatizer.lemmatize(tokens[i], 'v')
-            if not verb_flag and pos_tag_tokens[i][1] in ['VB','VBD','VBP','VBZ']:
-                verb_flag = True
-                result[4].append(base_form)
-                actverbindex.append(i)
 
-            elif base_form in ["have", "be"] and not verb_flag:
+            if base_form in ["have", "be"] and not verb_flag:
                 if "V" not in pos_tag_tokens[i + 1][1]:
                     verb_flag = True
                     result[4].append(base_form)
@@ -137,6 +133,10 @@ def word_tagger(parnum,sennum,tokens):
                     result[4].append(wordnet_lemmatizer.lemmatize(tokens[i+1],'v'))
                     actverbindex.append(i+1)
 
+            elif not verb_flag and pos_tag_tokens[i][1] in ['VB', 'VBD', 'VBP', 'VBZ']:
+                verb_flag = True
+                result[4].append(base_form)
+                actverbindex.append(i)
             elif tokens[i-1] == ',' and ("V" in pos_tag_tokens[i][1]):
                 result[4].append(base_form)
                 actverbindex.append(i)
@@ -225,7 +225,7 @@ def docanalyze(inputfile,outputfile,table):
     outputfile.close()
 
 if __name__ == "__main__":
-    inputfile = fileProcess.refineFile("input2.txt")
+    inputfile = fileProcess.refineFile("input.txt")
     outputfile = open("output.csv","w",encoding="utf-8")
     table = read_file("table1.csv")
     docanalyze(inputfile,outputfile,table)
