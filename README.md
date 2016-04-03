@@ -10,7 +10,7 @@ Our program takes a .txt file as an input and extracts sentence structures,inclu
 ##How we built it
 After reading and decomposing the paragraphs and sentences, it detects words from a sentence and convert each of them to its base form. Then each word is passed into appropriate functions ,verb passed into _ isVerb_ , to determine the correct form. In this process, it is important to distinguish noun-adjectives(ex. skillful) and verb-adjectives(ex. agreeable) from regular noun, verb, and adjective. To solve this problem, the program checks if the adjective suffix is in the word.
 
-#Simplified algorithm flowcharts are also attached above.
+###Simplified algorithm flowcharts are also attached above.
 
 ##Challenges we ran into
 Enabling computers to derive meanings of human language was the biggest challenge. English sentences are not always as clear as "subject-verb-objective," and enabling program to handle exceptions and extracting the word was complicated. In addition, imperfection of NLP library, such as detecting the word "seamless" as a verb instead of an adjective made it hard to correctly categorize the words.
