@@ -68,6 +68,7 @@ def word_tagger(parnum,sennum,tokens):
     pos_tag_tokens = nltk.pos_tag(tokens)
     actverbindex = []
     multiclause = multi_clause(tokens,pos_tag_tokens)
+    multiverb = multi_verb(tokens, pos_tag_tokens)
 
     if multiclause != 0:
         sec_clause = word_tagger(parnum, sennum, tokens[multiclause:])
@@ -113,7 +114,7 @@ def word_tagger(parnum,sennum,tokens):
 
     pos_tag_tokens = nltk.pos_tag(tokens)
 
-    multiverb = multi_verb(tokens,pos_tag_tokens)
+
 
     if multiverb:
         for i in range(len(tokens)):
@@ -162,7 +163,6 @@ def word_tagger(parnum,sennum,tokens):
                 result[4].append(base_form)
                 actverbindex.append(i)
                 break
-
 
     actverbindex.sort(reverse=True)
     for index in actverbindex:
