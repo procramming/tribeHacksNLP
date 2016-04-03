@@ -25,6 +25,8 @@ This project was challenging as none of the team members had prior knowledge in 
 NLP program can be extended to many different directions. One of the key development points is to enhance the accuracy and be able to handle different exceptions in English sentence structure. The program can also be developed to handle sentence structures in different languages.
 
 #Built With
-python\n
-natural-language-processing\n
+python
+
+natural-language-processing
+
 nltk
