@@ -69,6 +69,7 @@ def word_tagger(parnum,sennum,tokens):
     actverbindex = []
     multiclause = multi_clause(tokens,pos_tag_tokens)
     multiverb = multi_verb(tokens, pos_tag_tokens)
+    in_bracket = False
 
     if multiclause != 0:
         sec_clause = word_tagger(parnum, sennum, tokens[multiclause:])
@@ -80,9 +81,9 @@ def word_tagger(parnum,sennum,tokens):
         base_form = wordnet_lemmatizer.lemmatize(word, "v")
         base_formremov =removeAdSuf(base_form)
         base_form2 = wordnet_lemmatizer.lemmatize(removeAdSuf(base_form), 'v')
-        if word.title() == word and word[0].lower() in "qwertyuiopasdfghjklzxcvbnm" and verb_flag == False:
+        if word.title() == word and word[0].lower() in "qwertyuiopasdfghjklzxcvbnm" and verb_flag == in_bracket == False:
             result[2].append(word)
-        elif tokens[i-1].lower() in ["the",'a',] and verb_flag == False:
+        elif tokens[i-1].lower() in ["the",'a',] and verb_flag == in_bracket == False:
             result[2].append(word)
         elif isverb(base_form):
             result[3].append(base_form)
@@ -90,7 +91,7 @@ def word_tagger(parnum,sennum,tokens):
                 firstverbindex = tokens.index(word)
             verb_flag = True
         elif ("MD" in nltk.pos_tag(nltk.word_tokenize(word))[0][1] or
-            "RB" in nltk.pos_tag(nltk.word_tokenize(word))[0][1]) and (verb_flag == False):
+            "RB" in nltk.pos_tag(nltk.word_tokenize(word))[0][1]) and (verb_flag == in_bracket == False):
             firstverbindex = tokens.index(word)
             verb_flag = True
             continue
@@ -126,11 +127,13 @@ def word_tagger(parnum,sennum,tokens):
                 result[4].append(base_form)
                 actverbindex.append(i)
 
-            elif base_form in ["have", "be"]:
+            elif base_form in ["have", "be"] and not verb_flag:
                 if "V" not in pos_tag_tokens[i + 1][1]:
+                    verb_flag = True
                     result[4].append(base_form)
                     actverbindex.append(i)
                 else:
+                    verb_flag = True
                     result[4].append(wordnet_lemmatizer.lemmatize(tokens[i+1],'v'))
                     actverbindex.append(i+1)
 
